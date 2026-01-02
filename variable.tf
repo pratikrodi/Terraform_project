@@ -1,13 +1,13 @@
 variable "iam_user_name" {
-  default = "demo-user"
+  default = "terraform-user"
 }
 
 variable "iam_role_name" {
-  default = "demo-role"
+  default = "terraform-role"
 }
 
 variable "s3_bucket_name" {
-  default = "demo-terraform-bucket-12345"
+  default = "Terra-pract-user-bucket"
 }
 
 variable "vpc_id" {}
@@ -17,7 +17,7 @@ variable "public_subnets" {
 }
 
 variable "ami_id" {
-  description = "AMI for EC2"
+  description = "ami-00ca570c1b6d79f36"
 }
 
 variable "instance_type" {
