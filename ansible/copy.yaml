@@ -1,5 +1,6 @@
 - name: my web server
   hosts: all
+  become: true
   tasks:
   - name: install apache2
     package:
