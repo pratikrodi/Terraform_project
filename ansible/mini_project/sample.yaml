@@ -26,7 +26,7 @@
   become: true
   tasks:
     - copy:
-        src: files/ubuntu_index.html
+        src: ./ubuntu_index.html
         dest: /var/www/html/index.html
         mode: '0644'
 
@@ -35,7 +35,7 @@
   become: true
   tasks:
     - copy:
-        src: files/amazon_index.html
+        src: ./amazon_index.html
         dest: /var/www/html/index.html
         mode: '0644'
 
@@ -44,6 +44,6 @@
   become: true
   tasks:
     - copy:
-        src: files/rhel_index.html
+        src: ./rhel_index.html
         dest: /var/www/html/index.html
         mode: '0644'
