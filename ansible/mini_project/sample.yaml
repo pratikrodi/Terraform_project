@@ -1,0 +1,49 @@
+- name: Install and configure web servers
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Install Apache on Debian (Ubuntu)
+      package:
+        name: apache2
+        state: present
+      when: ansible_os_family == "Debian"
+
+    - name: Install Apache on RedHat based systems
+      package:
+        name: httpd
+        state: present
+      when: ansible_os_family == "RedHat"
+
+    - name: Start and enable Apache
+      service:
+        name: "{{ 'apache2' if ansible_os_family == 'Debian' else 'httpd' }}"
+        state: started
+        enabled: yes
+
+- name: Deploy Ubuntu index.html
+  hosts: ubuntu
+  become: true
+  tasks:
+    - copy:
+        src: files/ubuntu_index.html
+        dest: /var/www/html/index.html
+        mode: '0644'
+
+- name: Deploy Amazon Linux index.html
+  hosts: amazon
+  become: true
+  tasks:
+    - copy:
+        src: files/amazon_index.html
+        dest: /var/www/html/index.html
+        mode: '0644'
+
+- name: Deploy Red Hat index.html
+  hosts: rhel
+  become: true
+  tasks:
+    - copy:
+        src: files/rhel_index.html
+        dest: /var/www/html/index.html
+        mode: '0644'
