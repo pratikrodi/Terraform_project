@@ -1,0 +1,6 @@
+- name: Setup Tomcat Web Server using Ansible Role
+  hosts: tomcat
+  become: true
+
+  roles:
+    - tomcat

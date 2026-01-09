@@ -1,3 +1,51 @@
 #SPDX-License-Identifier: MIT-0
 ---
 # tasks file for tomcat
+- name: Install Java
+  apt:
+    name: "{{ java_package }}"
+    state: present
+    update_cache: yes
+
+- name: Create tomcat group
+  group:
+    name: "{{ tomcat_group }}"
+
+- name: Create tomcat user
+  user:
+    name: "{{ tomcat_user }}"
+    group: "{{ tomcat_group }}"
+    home: "{{ tomcat_home }}"
+    shell: /bin/false
+
+- name: Download Tomcat
+  get_url:
+    url: "https://archive.apache.org/dist/tomcat/tomcat-9/v{{ tomcat_version }}/bin/apache-tomcat-{{ tomcat_version }}.tar.gz"
+    dest: /tmp/tomcat.tar.gz
+
+- name: Create tomcat directory
+  file:
+    path: "{{ tomcat_home }}"
+    state: directory
+
+- name: Extract Tomcat
+  unarchive:
+    src: /tmp/tomcat.tar.gz
+    dest: "{{ tomcat_home }}"
+    remote_src: yes
+    extra_opts: [--strip-components=1]
+
+- name: Set permissions
+  file:
+    path: "{{ tomcat_home }}"
+    owner: "{{ tomcat_user }}"
+    group: "{{ tomcat_group }}"
+    recurse: yes
+
+- name: Copy index.jsp page
+  copy:
+    src: index.jsp
+    dest: "{{ tomcat_home }}/webapps/ROOT/index.jsp"
+    owner: "{{ tomcat_user }}"
+    group: "{{ tomcat_group }}"
+  notify: Start Tomcat
