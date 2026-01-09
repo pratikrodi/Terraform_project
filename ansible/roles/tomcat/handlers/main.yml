@@ -1,10 +1,8 @@
 #SPDX-License-Identifier: MIT-0
 ---
 # handlers file for tomcat
-- name: Copy index.jsp page
-  copy:
-    src: index.jsp
-    dest: "{{ tomcat_home }}/webapps/ROOT/index.jsp"
-    owner: "{{ tomcat_user }}"
-    group: "{{ tomcat_group }}"
-  notify: Start Tomcat
+- name: Start Tomcat
+  shell: "{{ tomcat_home }}/bin/startup.sh"
+  args:
+    chdir: "{{ tomcat_home }}/bin"
+
