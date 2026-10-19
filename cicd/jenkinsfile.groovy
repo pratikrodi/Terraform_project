@@ -3,6 +3,7 @@ pipeline {
     stages {
         stage('pull') {
             steps {
+                git branch: 'main', url: 'https://github.com/pratikrodi/my_portfolio.git'
                 echo "pull success"
             }
         }
