@@ -6,7 +6,7 @@ pipeline {
     
     tools {
         // Must match the name configured in your Jenkins Global Tool Configuration
-        nodejs 'node-16' 
+        nodejs 'node-20' 
     }
     
     environment {
