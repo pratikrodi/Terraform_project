@@ -1,12 +1,12 @@
 pipeline {
     agent {
         // Runs the pipeline on a Jenkins agent with the label 'node1'
-        label 'node-1'
+        label 'node1'
     }
     
     tools {
         // Must match the name configured in your Jenkins Global Tool Configuration
-        nodejs 'node-20' 
+        nodejs 'node-16' 
     }
     
     environment {
