@@ -1,5 +1,8 @@
 pipeline {
-    agent any
+    agent {
+        // Runs the pipeline on a Jenkins agent with the label 'node1'
+        label 'node1'
+    }
     stages {
         stage('pull') {
             steps {
