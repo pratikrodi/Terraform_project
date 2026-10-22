@@ -1,7 +1,7 @@
 pipeline {
     agent {
         // Runs the pipeline on a Jenkins agent with the label 'node1'
-        label 'node1'
+        label 'node-1'
     }
     
     tools {
